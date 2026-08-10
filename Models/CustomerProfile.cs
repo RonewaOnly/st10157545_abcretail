@@ -1,4 +1,6 @@
-﻿namespace st10157545_abcretail.Models
+﻿using Azure;
+using Azure.Data.Tables;
+namespace st10157545_abcretail.Models
 {
     /// <summary>
     /// Represents a customer profile stored in Azure Table Storage.
@@ -9,7 +11,7 @@
     ///                               table grows very large)
     ///   RowKey       = CustomerId  (unique identifier, generated as a GUID)
     /// </summary>
-    public class CustomerProfile
+    public class CustomerProfile:ITableEntity
     {
         // ITableEntity required members
         public string PartitionKey { get; set; } = "Customer";

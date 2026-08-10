@@ -1,4 +1,6 @@
-﻿namespace st10157545_abcretail.Models
+﻿using Azure.Data.Tables;
+
+namespace st10157545_abcretail.Models
 {
     /// <summary>
     /// Represents an order transaction message placed on Azure Queue Storage.

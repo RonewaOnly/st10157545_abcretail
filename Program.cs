@@ -1,10 +1,15 @@
+using st10157545_abcretail.Data;
 using st10157545_abcretail.Services;
+using Microsoft.EntityFrameworkCore;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
 // MVC services
 builder.Services.AddControllersWithViews();
+
+
+
 
 // Register our Azure Storage services for dependency injection.
 // Both services read the connection string from configuration (appsettings.json
@@ -14,6 +19,8 @@ builder.Services.AddSingleton<ITableStorageService, TableStorageService>();
 builder.Services.AddSingleton<IBlobStorageService, BlobStorageService>();
 builder.Services.AddSingleton<IQueueStorageService, QueueStorageService>();
 builder.Services.AddSingleton<IFileStorageService, FileStorageService>();
+
+//
 
 var app = builder.Build();
 
