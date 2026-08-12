@@ -28,60 +28,64 @@ var app = builder.Build();
 // before the app starts serving requests.
 using (var scope = app.Services.CreateScope())
 {
-    var tableService = scope.ServiceProvider.GetRequiredService<ITableStorageService>();
-    var blobService = scope.ServiceProvider.GetRequiredService<IBlobStorageService>();
-    var queueService = scope.ServiceProvider.GetRequiredService<IQueueStorageService>();
-    var fileService = scope.ServiceProvider.GetRequiredService<IFileStorageService>();
     try
     {
-        Console.WriteLine("Initializing Table Storage...");
+        var tableService = scope.ServiceProvider
+            .GetRequiredService<ITableStorageService>();
+
         await tableService.InitializeAsync();
-        Console.WriteLine("Table Storage OK");
+
+        Console.WriteLine("Azure Table Storage initialized successfully.");
     }
     catch (Exception ex)
     {
-        Console.WriteLine("TABLE STORAGE FAILED:");
-        Console.WriteLine(ex);
-        throw;
+        Console.WriteLine("Azure Table Storage initialization failed.");
+        Console.WriteLine(ex.Message);
     }
 
     try
     {
-        Console.WriteLine("Initializing Blob Storage...");
+        var blobService = scope.ServiceProvider
+            .GetRequiredService<IBlobStorageService>();
+
         await blobService.InitializeAsync();
-        Console.WriteLine("Blob Storage OK");
+
+        Console.WriteLine("Azure Blob Storage initialized successfully.");
     }
     catch (Exception ex)
     {
-        Console.WriteLine("BLOB STORAGE FAILED:");
-        Console.WriteLine(ex);
-        throw;
+        Console.WriteLine("Azure Blob Storage initialization failed.");
+        Console.WriteLine(ex.Message);
     }
 
     try
     {
-        Console.WriteLine("Initializing Queue Storage...");
+        var queueService = scope.ServiceProvider
+            .GetRequiredService<IQueueStorageService>();
+
         await queueService.InitializeAsync();
-        Console.WriteLine("Queue Storage OK");
+
+        Console.WriteLine("Azure Queue Storage initialized successfully.");
     }
     catch (Exception ex)
     {
-        Console.WriteLine("QUEUE STORAGE FAILED:");
-        Console.WriteLine(ex);
-        throw;
+        Console.WriteLine("Azure Queue Storage initialization failed.");
+        Console.WriteLine(ex.Message);
     }
 
     try
     {
-        Console.WriteLine("Initializing File Storage...");
+        var fileService = scope.ServiceProvider
+            .GetRequiredService<IFileStorageService>();
+
         await fileService.InitializeAsync();
-        Console.WriteLine("File Storage OK");
+
+        Console.WriteLine("Azure File Storage initialized successfully.");
     }
     catch (Exception ex)
     {
-        Console.WriteLine("FILE STORAGE FAILED:");
-        Console.WriteLine(ex);
-        throw;
+        Console.WriteLine("Azure File Storage initialization failed.");
+        Console.WriteLine(ex.Message);
     }
 }
 
