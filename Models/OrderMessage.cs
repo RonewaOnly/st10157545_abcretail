@@ -7,7 +7,7 @@ namespace st10157545_abcretail.Models
     /// This is NOT a table entity - it is serialized to JSON and sent as the
     /// body of a queue message, which is how ABC Retail's order processing
     /// and inventory-update pipeline communicates asynchronously.
-    ///
+    ///new
     /// Message format (JSON):
     /// {
     ///   "OrderId": "guid",
