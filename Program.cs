@@ -32,10 +32,57 @@ using (var scope = app.Services.CreateScope())
     var blobService = scope.ServiceProvider.GetRequiredService<IBlobStorageService>();
     var queueService = scope.ServiceProvider.GetRequiredService<IQueueStorageService>();
     var fileService = scope.ServiceProvider.GetRequiredService<IFileStorageService>();
-    await tableService.InitializeAsync();
-    await blobService.InitializeAsync();
-    await queueService.InitializeAsync();
-    await fileService.InitializeAsync();
+    try
+    {
+        Console.WriteLine("Initializing Table Storage...");
+        await tableService.InitializeAsync();
+        Console.WriteLine("Table Storage OK");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine("TABLE STORAGE FAILED:");
+        Console.WriteLine(ex);
+        throw;
+    }
+
+    try
+    {
+        Console.WriteLine("Initializing Blob Storage...");
+        await blobService.InitializeAsync();
+        Console.WriteLine("Blob Storage OK");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine("BLOB STORAGE FAILED:");
+        Console.WriteLine(ex);
+        throw;
+    }
+
+    try
+    {
+        Console.WriteLine("Initializing Queue Storage...");
+        await queueService.InitializeAsync();
+        Console.WriteLine("Queue Storage OK");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine("QUEUE STORAGE FAILED:");
+        Console.WriteLine(ex);
+        throw;
+    }
+
+    try
+    {
+        Console.WriteLine("Initializing File Storage...");
+        await fileService.InitializeAsync();
+        Console.WriteLine("File Storage OK");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine("FILE STORAGE FAILED:");
+        Console.WriteLine(ex);
+        throw;
+    }
 }
 
 if (!app.Environment.IsDevelopment())
