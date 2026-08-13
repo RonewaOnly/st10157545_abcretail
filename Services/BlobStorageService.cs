@@ -94,7 +94,7 @@ namespace st10157545_abcretail.Services
                 BlobContainerName = _containerClient.Name,
                 BlobName = blobName,
                 Resource = "b",
-                ExpiresOn = DateTimeOffset.UtcNow.AddHours(1)
+                ExpiresOn = DateTimeOffset.UtcNow.AddHours(600)
             };
 
             sasBuilder.SetPermissions(
